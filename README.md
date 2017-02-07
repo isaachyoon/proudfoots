@@ -9,7 +9,6 @@ An app for people who want to know what happens in congress about issues they ca
 1. [Development](#development)
     1. [Installing Dependencies](#installing-dependencies)
     1. [Tasks](#tasks)
-1. [Team](#team)
 1. [Contributing](#contributing)
 
 ## Usage
@@ -34,7 +33,7 @@ npm install
 
 ### Roadmap
 
-View the project roadmap [here](https://github.com/HR-Proudfoots/proudfoots/issues)
+View the project roadmap [here](https://waffle.io/brandybucks/proudfoots)
 
 ## Contributing
 
