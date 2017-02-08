@@ -13,20 +13,6 @@ class StateLegislatorInfo extends React.Component {
   }
 
 
-  // national level info output
-
-  // Rep Nancy Pelosi (D)
-  // Office Address: 233 Cannon House Office Building , Washington, DC 20515
-  // Phone:  202-225-4965
-  // Website:  http://pelosi.house.gov
-  // Facebook ID:  86574174383
-  // Twitter:  NancyPelosi
-  // Youtube:  nancypelosi
-
-  // state info available
-  // too much to list, console log it again
-
-
   render() {
     return (
       <StateLegislatorInfoPresentational info={this.props.info}
@@ -56,26 +42,22 @@ class StateLegislatorInfoPresentational extends React.Component {
             {info.offices.map((office, index) => {
 
               return (
-                  <tr key={index}>
-                    <td colSpan='2'>
-                      <table className="table">
-                        <tr>
-                          <td><b>{office.type}</b> Office Address:</td>
-                        </tr>
-                        <tr>
-                          <td>{office.address}</td>
-                        </tr>
-                        <tr>
-                          <td>{office.phone}</td>
-                        </tr>
-
-
-                      </table>
-                    </td>
-                  </tr>
-
+                <tr key={index}>
+                  <td colSpan='2'>
+                    <table className="table">
+                      <tr>
+                        <td><b>{office.type}</b> Office Address:</td>
+                      </tr>
+                      <tr>
+                        <td>{office.address}</td>
+                      </tr>
+                      <tr>
+                        <td>{office.phone}</td>
+                      </tr>
+                    </table>
+                  </td>
+                </tr>
               );
-
             })}
 
 

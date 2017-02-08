@@ -68,6 +68,7 @@ class App extends React.Component {
           isUserLoggedIn: false
         });
 
+        // this gets commented back IN for not testing
         // hashHistory.push('/about');
 
         // Testing
