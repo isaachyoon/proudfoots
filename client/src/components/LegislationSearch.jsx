@@ -12,6 +12,7 @@ const React = require('react');
 const SearchBar = require('./SearchBar.jsx');
 const SearchResults = require('./SearchResults.jsx');
 // const LegislatorData = require('../data/googTrends.js')
+const Trends = require('./Trends.jsx');
 import queryGoogle from '../data/googTrends.js'
 import axios from 'axios';
 
@@ -20,13 +21,15 @@ class LegislationSearch extends React.Component {
     super(props);
     this.state = {
       isFetchingSearchResults: false,
-      searchResults: []
+      searchResults: [],
+      searchGoogle: []
     };
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
   render() {
     return (
+      <div>
       <LegislationSearchPresentational
         isFetching={this.state.isFetchingSearchResults}
         billResults={this.state.searchResults}
@@ -35,6 +38,7 @@ class LegislationSearch extends React.Component {
       {!this.props.isFetching &&
         <Trends search={this.state.searchGoogle} />
       }
+     </div>
     );
   }
 
@@ -44,6 +48,7 @@ class LegislationSearch extends React.Component {
     // queryGoogle(searchTerms, function(data){
     //   console.log(data);
     // })
+    var context = this;
     axios.post('http://localhost:8080/queryGoogle/', {
         query: searchTerms
     })
@@ -52,7 +57,7 @@ class LegislationSearch extends React.Component {
       context.setState({searchGoogle: response.data})
     })
     .catch(function(error){
-      console.log('error');
+      console.log(error);
     })
 
     ////////////////////////////////////////////////////////////////

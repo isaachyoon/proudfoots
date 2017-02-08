@@ -1,8 +1,7 @@
 // Initiate connection to DB
 var mongoose = require('mongoose');
 //MONGODB CONNECTION
-var dbURL = require('./lib/api_config.js');
-mongoose.connect(dbURL.dbURL);
+mongoose.connect('mongodb://localhost/billfetchertest');
 
 var app = require('./server-config.js');
 //HTTP SERVER CONNECTION

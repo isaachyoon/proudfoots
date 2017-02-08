@@ -68,10 +68,7 @@ class App extends React.Component {
           isUserLoggedIn: false
         });
 
-<<<<<<< HEAD
-        // this gets commented back IN for not testing
-=======
->>>>>>> adds googleTrends API files
+
         // hashHistory.push('/about');
 
         // Testing
