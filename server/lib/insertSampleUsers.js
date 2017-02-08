@@ -1,8 +1,8 @@
 var User = require('./../../db/models/user');
 var mongoose = require('mongoose');
 var data = require('./sampleUserData.json');
-
-mongoose.connect('mongodb://localhost/billfetchertest');
+var dbURL = require('./api_config.js');
+mongoose.connect(dbURL.dbURL);
 
 
 User.create(data, function(err, result) {
