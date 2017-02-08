@@ -6,7 +6,7 @@
 // The AppRoutes class defines the client side routes
 // The App class is the main view after a user has logged-in
 // Other view with non-nested component: login, signup, logout and about
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////
 const React = require('react');
 const ReactDOM = require('react-dom');
@@ -50,7 +50,7 @@ class App extends React.Component {
       .done((data) => {
         // Debug
         // console.log(data);
-        this.setState({        
+        this.setState({
           isVerifyingUserSession: false,
           isUserLoggedIn: true,
           username: data.username,
@@ -67,19 +67,19 @@ class App extends React.Component {
           isUserLoggedIn: false
         });
 
-        hashHistory.push('/about');
+        // hashHistory.push('/about');
 
         // Testing
-        // this.setState({
-        //   // Testing Only:
-        //   isVerifyingUserSession: false,          
-        //   isUserLoggedIn: true,
-        //   username: 'boba',
-        //   userLocation: {
-        //     lat: 37.795,
-        //     long: -122.40
-        //   }      
-        // });
+        this.setState({
+          // Testing Only:
+          isVerifyingUserSession: false,
+          isUserLoggedIn: true,
+          username: 'boba',
+          userLocation: {
+            lat: 37.795,
+            long: -122.40
+          }
+        });
 
       });
   }
@@ -147,7 +147,7 @@ class AppRoutes extends React.Component {
         <Route path="/about" component={About} />
         <Route path="/login" component={UserLogin} />
         <Route path="/signup" component={UserSignup} />
-        <Route path="/logout" component={UserLogout} /> 
+        <Route path="/logout" component={UserLogout} />
         <Route path="/" component={App}>
           <Route path="/search" components = {{main: 'LegislationSearch'}} />
           <Route path="/dashboard" components = {{main: 'UserDashBoard'}} />
@@ -155,6 +155,6 @@ class AppRoutes extends React.Component {
       </Router>
     );
   }
-} 
+}
 
 ReactDOM.render(<AppRoutes />, document.getElementById('app'));

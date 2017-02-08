@@ -5,12 +5,14 @@
 //
 // Search related AJAX calls to the Sunlight server are made at this component
 // level
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////
 
 const React = require('react');
 const SearchBar = require('./SearchBar.jsx');
 const SearchResults = require('./SearchResults.jsx');
+// const LegislatorData = require('../data/googTrends.js')
+import queryGoogle from '../data/googTrends.js'
 
 class LegislationSearch extends React.Component {
   constructor(props) {
@@ -24,9 +26,9 @@ class LegislationSearch extends React.Component {
   }
   render() {
     return (
-      <LegislationSearchPresentational 
+      <LegislationSearchPresentational
         isFetching={this.state.isFetchingSearchResults}
-        billResults={this.state.searchResults} 
+        billResults={this.state.searchResults}
         onSearchSubmit={this.handleSearchSubmit}
       />
     );
@@ -34,6 +36,13 @@ class LegislationSearch extends React.Component {
 
   handleSearchSubmit(searchTerms) {
     this.setState({isFetchingSearchResults: true});
+    /////////////////////////////////////////////////////////////////
+    // queryGoogle(searchTerms, function(data){
+    //   console.log(data);
+    // })
+
+
+    ////////////////////////////////////////////////////////////////
 
     // AJAX call for a full text search to the Sunlight server
     let ajaxSettings = {
@@ -67,8 +76,8 @@ class LegislationSearchPresentational extends React.Component {
         <h3>Bill Search</h3>
         <SearchBar onSubmit={this.props.onSearchSubmit}/>
         {!this.props.isFetching &&
-          <SearchResults 
-            isFetching={this.props.isFetching} 
+          <SearchResults
+            isFetching={this.props.isFetching}
             billResults={this.props.billResults}
             />
         }
