@@ -4,12 +4,13 @@ var User = require('./../../db/models/user');
 var mongoose = require('mongoose');
 var fs = require('fs');
 var emailPassword = require('./api_config.js');
+var dbURL = require('./lib/api_config.js');
 
 var emailTimestampFile = 'server/lib/emailTimestamp.txt';
 
 console.log(emailTimestampFile);
 
-mongoose.connect('mongodb://localhost/billfetchertest');
+mongoose.connect(dbURL.dbURL);
 
 // create reusable transporter object using the default SMTP transport
 let transporter = nodemailer.createTransport({
