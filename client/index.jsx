@@ -111,7 +111,7 @@ class App extends React.Component {
           <NavigationBar username={this.state.username}/>
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-4 col-lg-push-4">
+              <div className="col-lg-4 col-lg-push-8">
                 <span style={isShowing('UserDashBoard')}>
                   <UserDashBoard username={this.state.username} userMonitoredKeywords={this.state.userMonitoredKeywords} />
                 </span>
