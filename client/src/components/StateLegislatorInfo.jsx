@@ -49,6 +49,34 @@ class StateLegislatorInfoPresentational extends React.Component {
 
         <table className="table">
           <tbody>
+            <tr>
+              <td>Chamber: {info.chamber} ({info.chamber === 'lower' ? 'Assembly - 1 of 80' : 'Senate - 1 of 40'})</td>
+            </tr>
+
+            {info.offices.map((office, index) => {
+
+              return (
+                  <tr key={index}>
+                    <td colSpan='2'>
+                      <table className="table">
+                        <tr>
+                          <td><b>{office.type}</b> Office Address:</td>
+                        </tr>
+                        <tr>
+                          <td>{office.address}</td>
+                        </tr>
+                        <tr>
+                          <td>{office.phone}</td>
+                        </tr>
+
+
+                      </table>
+                    </td>
+                  </tr>
+
+              );
+
+            })}
 
 
             {info.fax &&
@@ -65,8 +93,7 @@ class StateLegislatorInfoPresentational extends React.Component {
             }
             {info.url &&
             <tr>
-              <td>Website:</td>
-              <td><a href={info.website} target="_blank">{info.website}</a></td>
+              <td>Website: <a href={info.url} target="_blank">{info.url}</a></td>
             </tr>
             }
             {info.contact_form &&

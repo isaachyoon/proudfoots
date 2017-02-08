@@ -49,7 +49,6 @@ class UserStateLegislatorsInfo extends React.Component {
       }
 
       {!this.state.isFetchingElectoralData &&
-        // <p>Not Fetching Data</p>
         <UserStateLegislatorsInfoPresentational
           // electoralInfo={this.getElectoralInfo()}
           // houseRepInfo={this.getHouseRepInfo()}
@@ -206,7 +205,7 @@ class UserStateLegislatorsInfoPresentational extends React.Component {
     return (
       <div className="panel panel-default">
         <div className="panel-body">
-          <h3>State Senators</h3>
+          <h3>State Legislators</h3>
           {this.props.senatorsInfo.map((senatorInfo, index) => {
             return (
               <StateLegislatorInfo key={index} info={senatorInfo} />
