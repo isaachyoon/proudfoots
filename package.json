@@ -10,7 +10,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "clientDevServer": "node_modules/.bin/webpack-dev-server -d --progress --color --content-base client/",
     "start": "nodemon server/server.js",
-    "postinstall": "webpack -p"
   },
   "repository": {
     "type": "git",
