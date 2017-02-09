@@ -6,11 +6,7 @@ var util = require('./utility.js');
 var BillAssociate = require('./billAssociate.js');
 var bodyParser = require('body-parser');
 var googleTrends = require('google-trends-api');
-<<<<<<< HEAD
-=======
 
-
->>>>>>> modifies app to handle cors
 /////////////////////////////////////////////////////////////////
 //AUTHENTICATION
 
