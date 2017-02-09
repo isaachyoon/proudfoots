@@ -56,6 +56,11 @@
 		box-sizing: border-box;
 	}
 
+
+	.leftPanel {
+
+		border-radius: 3px;
+	}
 /* Containers */
 
 	.container {
@@ -216,6 +221,8 @@
 	}
 
 /* Grid */
+
+
 
 	.row {
 		border-bottom: solid 1px transparent;
