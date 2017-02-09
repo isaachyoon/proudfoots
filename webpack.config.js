@@ -20,12 +20,27 @@ var config = {
         exclude: /node_modules/,
         presets: ['es2015', 'react'],
         plugins: ['transform-es2015-arrow-functions']
+      },
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
       }
     ]
   },
-  devServer: { 
+  devServer: {
     inline: true,
+  },
+
+  resolve: {
+    extensions: ['', '.webpack.js', '.web.js', '.js']
+  },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty'
   }
+
+
 };
 
 module.exports = config;

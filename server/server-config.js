@@ -6,10 +6,14 @@ var mongoose = require('mongoose');
 var path = require('path');
 var handler = require('./lib/request-handler');
 var util = require('./lib/utility.js');
+var cors = require('cors');
+
 
 var app = express();
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }))
 
+app.use(bodyParser.json());
+app.use(cors());
 /////////////////////////////////////////////////////////////////
 //AUTHENTICATION
 //express session
@@ -30,8 +34,16 @@ app.post('/login', handler.userLogin);
 //handles user logout action
 app.get('/logout', handler.userLogout);
 
+/////////////////////////////////////////////////////////////////
+app.post('/queryGoogle', handler.queryGoogle);
+
+/////////////////////////////////////////////////////////////////
+
 //handles user signup action
 app.post('/signup/:username', handler.userSignup);
+
+app.post('/queryGoogle', handler.queryGoogle);
+
 
 //endpoints for adding and deleteing 'monitored keywords' for a particular user with :username
 /////////////////////////////////////////////////////////////////

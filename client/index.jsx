@@ -28,6 +28,7 @@ const UserLogin = require(__dirname + '/src/components/UserLogin.jsx');
 const UserSignup = require(__dirname + '/src/components/UserSignup.jsx');
 const UserLogout = require(__dirname + '/src/components/UserLogout.jsx');
 const About = require(__dirname + '/src/components/About.jsx');
+const Trends = require(__dirname + '/src/components/Trends.jsx');
 
 class App extends React.Component {
   constructor(props) {
@@ -68,7 +69,7 @@ class App extends React.Component {
           isUserLoggedIn: false
         });
 
-        // this gets commented back IN for not testing
+
         // hashHistory.push('/about');
 
         // Testing
@@ -157,6 +158,7 @@ class AppRoutes extends React.Component {
         <Route path="/login" component={UserLogin} />
         <Route path="/signup" component={UserSignup} />
         <Route path="/logout" component={UserLogout} />
+        <Route path="/trends" component={Trends}/>
         <Route path="/" component={App}>
           <Route path="/search" components = {{main: 'LegislationSearch'}} />
           <Route path="/dashboard" components = {{main: 'UserDashBoard'}} />

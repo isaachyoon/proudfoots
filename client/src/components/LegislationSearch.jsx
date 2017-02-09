@@ -5,35 +5,64 @@
 //
 // Search related AJAX calls to the Sunlight server are made at this component
 // level
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////
+// var googleTrends = require('google-trends-api');
 
 const React = require('react');
 const SearchBar = require('./SearchBar.jsx');
 const SearchResults = require('./SearchResults.jsx');
+const Trends = require('./Trends.jsx');
+// const LegislatorData = require('../data/googTrends.js')
+const Trends = require('./Trends.jsx');
+import queryGoogle from '../data/googTrends.js'
+import axios from 'axios';
 
 class LegislationSearch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       isFetchingSearchResults: false,
-      searchResults: []
+      searchResults: [],
+      searchGoogle: []
     };
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
   render() {
     return (
-      <LegislationSearchPresentational 
+      <div>
+      <LegislationSearchPresentational
         isFetching={this.state.isFetchingSearchResults}
-        billResults={this.state.searchResults} 
+        billResults={this.state.searchResults}
         onSearchSubmit={this.handleSearchSubmit}
       />
+      {!this.props.isFetching &&
+        <Trends search={this.state.searchGoogle} />
+      }
+     </div>
     );
   }
 
   handleSearchSubmit(searchTerms) {
     this.setState({isFetchingSearchResults: true});
+    /////////////////////////////////////////////////////////////////
+    // queryGoogle(searchTerms, function(data){
+    //   console.log(data);
+    // })
+    var context = this;
+    axios.post('http://localhost:8080/queryGoogle/', {
+        query: searchTerms
+    })
+    .then(function(response){
+      console.log('response', response);
+      context.setState({searchGoogle: response.data})
+    })
+    .catch(function(error){
+      console.log(error);
+    })
+
+    ////////////////////////////////////////////////////////////////
 
     // AJAX call for a full text search to the Sunlight server
     let ajaxSettings = {
@@ -67,8 +96,8 @@ class LegislationSearchPresentational extends React.Component {
         <h3>Bill Search</h3>
         <SearchBar onSubmit={this.props.onSearchSubmit}/>
         {!this.props.isFetching &&
-          <SearchResults 
-            isFetching={this.props.isFetching} 
+          <SearchResults
+            isFetching={this.props.isFetching}
             billResults={this.props.billResults}
             />
         }

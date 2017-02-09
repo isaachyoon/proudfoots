@@ -5,9 +5,9 @@
 // congress and senate representatives based on their location (lat/long)
 // information.
 //
-// It is responsible for the AJAX call to the Sunlight API to retrieve the 
+// It is responsible for the AJAX call to the Sunlight API to retrieve the
 // relevant legislator information.
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////
 
 const React = require('react');
@@ -31,19 +31,19 @@ class UserLegislatorsInfo extends React.Component {
     this.fetchLegislatorDataFromExternalSources = this.fetchLegislatorDataFromExternalSources.bind(this);
   }
 
-  
+
   render() {
     let isFechingData = this.state.isFechingData;
     return (
       <div>
-      {(this.state.isFetchingRepData || this.state.isFetchingElectoralData) && 
+      {(this.state.isFetchingRepData || this.state.isFetchingElectoralData) &&
         <p>Fetching Data</p>
       }
 
-      {!this.state.isFetchingRepData && !this.state.isFetchingElectoralData && 
-        <UserLegislatorsInfoPresentational 
-          electoralInfo={this.getElectoralInfo()} 
-          houseRepInfo={this.getHouseRepInfo()} 
+      {!this.state.isFetchingRepData && !this.state.isFetchingElectoralData &&
+        <UserLegislatorsInfoPresentational
+          electoralInfo={this.getElectoralInfo()}
+          houseRepInfo={this.getHouseRepInfo()}
           senatorsInfo={this.getSenatorsInfo()}
         />
       }
@@ -103,7 +103,7 @@ class UserLegislatorsInfo extends React.Component {
     readableElectoralInfo.state = this.state.electoralInfo.state;
     readableElectoralInfo.districtName = this.state.electoralInfo.districtName + '';
 
-    // Use the State name from the House Rep instead of 2 letter symbol 
+    // Use the State name from the House Rep instead of 2 letter symbol
     if (this.getHouseRepInfo() !== undefined) {
       readableElectoralInfo.state = this.getHouseRepInfo().state_name;
     }
@@ -135,10 +135,10 @@ class UserLegislatorsInfo extends React.Component {
       return (legislatorInfo.chamber === 'senate');
     }
   }
-}      
+}
 
 // Temporary Default Props for Testing
-// UserLegislatorsInfo.defaultProps = { 
+// UserLegislatorsInfo.defaultProps = {
 //   userLat: 37.795,
 //   userLong: -122.40
 // };
@@ -147,7 +147,7 @@ class UserLegislatorsInfo extends React.Component {
 class UserLegislatorsInfoPresentational extends React.Component {
   render() {
     return (
-      <div className="panel panel-default">
+      <div className="panel panel-default leftPanel">
         <div className="panel-heading">
           <h3 className="panel-title">Your Electoral Info:</h3>
           <h4>{this.props.electoralInfo.state} - {this.props.electoralInfo.districtName}</h4>
