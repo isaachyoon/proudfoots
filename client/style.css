@@ -1,4 +1,16 @@
 body {
-  padding-top: 65px;
+  padding-top: 65px; 
 }
-
+.red {
+  color: #ffffff !important;
+  background-color: #eb6864 !important;
+  border-color: #eb6864!important;
+}
+.blue {
+  color: #ffffff !important;
+  background-color: #2e6da4 !important;
+  border-color: #2e6da4 !important;
+}
+.topMargin {
+  top-margin: 25px;
+}

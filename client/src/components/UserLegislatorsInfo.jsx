@@ -148,9 +148,9 @@ class UserLegislatorsInfoPresentational extends React.Component {
   render() {
     return (
       <div className="panel panel-default leftPanel">
-        <div className="panel-heading">
+        <div className="panel-heading red">
           <h3 className="panel-title">Your Electoral Info:</h3>
-          <h4>{this.props.electoralInfo.state} - {this.props.electoralInfo.districtName}</h4>
+          <h4 className="red">{this.props.electoralInfo.state} - {this.props.electoralInfo.districtName}</h4>
         </div>
         <div className = "panel-body">
           <h3>House of Representatives</h3>
