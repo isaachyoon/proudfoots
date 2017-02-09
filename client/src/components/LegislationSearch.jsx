@@ -7,10 +7,12 @@
 // level
 //
 ////////////////////////////////////////////////////////////////////////////////
+var googleTrends = require('google-trends-api');
 
 const React = require('react');
 const SearchBar = require('./SearchBar.jsx');
 const SearchResults = require('./SearchResults.jsx');
+const Trends = require('./Trends.jsx');
 // const LegislatorData = require('../data/googTrends.js')
 import queryGoogle from '../data/googTrends.js'
 
@@ -19,30 +21,37 @@ class LegislationSearch extends React.Component {
     super(props);
     this.state = {
       isFetchingSearchResults: false,
-      searchResults: []
+      searchResults: [],
+      searchGoogle: []
     };
 
     this.handleSearchSubmit = this.handleSearchSubmit.bind(this);
   }
   render() {
     return (
+      <div>
       <LegislationSearchPresentational
         isFetching={this.state.isFetchingSearchResults}
         billResults={this.state.searchResults}
         onSearchSubmit={this.handleSearchSubmit}
       />
+      {!this.props.isFetching &&
+        <Trends search={this.state.searchGoogle} />
+      }
+      </div>
     );
   }
 
   handleSearchSubmit(searchTerms) {
     this.setState({isFetchingSearchResults: true});
-    /////////////////////////////////////////////////////////////////
-    // queryGoogle(searchTerms, function(data){
-    //   console.log(data);
-    // })
+    var context = this;
+    ////////////////////////////////////////////////////////////////////////////////////////
+    queryGoogle(searchTerms, function(item) {
+      console.log('logged in searchSubmit', item);
+      context.setState({searchGoogle: item})
+    })
 
-
-    ////////////////////////////////////////////////////////////////
+    ///////////////////////////////////////////////////////////////////////////////////////
 
     // AJAX call for a full text search to the Sunlight server
     let ajaxSettings = {
