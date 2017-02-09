@@ -3,9 +3,9 @@
 // --------------------------
 // This is the persistent navigation bar at the top of the dashboard page.
 //
-// It uses Bootstrap's collapse feature to create nav menu that is responsive 
+// It uses Bootstrap's collapse feature to create nav menu that is responsive
 // to mobile devices.
-// 
+//
 ////////////////////////////////////////////////////////////////////////////////
 
 const React = require('react');
@@ -29,19 +29,21 @@ class NavigationBar extends React.Component {
               Legislation Watch
             </a>
           </div>
-          
+
           <div className="navbar-collapse collapse" id="navbar-collapse-1">
             <ul className="nav navbar-nav">
               <li><Link to="/dashboard" className="nav-link">Dashboard</Link></li>
               <li><Link to="/search" className="nav-link">Search</Link></li>
+              <li><Link to="/trends" className="nav-link">Trends</Link></li>
+
             </ul>
 
             <div className="navbar-right">
               <p className="navbar-text nav-link">[{this.props.username}]</p>
 
               <ul className="nav navbar-nav">
-                <li><Link to="/logout" className="nav-link">Logout</Link></li>      
-              </ul> 
+                <li><Link to="/logout" className="nav-link">Logout</Link></li>
+              </ul>
             </div>
           </div>
 
