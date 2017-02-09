@@ -30,7 +30,7 @@ const UserLogout = require(__dirname + '/src/components/UserLogout.jsx');
 const About = require(__dirname + '/src/components/About.jsx');
 const Trends = require(__dirname + '/src/components/Trends.jsx');
 const ChatRoom = require(__dirname + '/src/components/ChatRoom.jsx');
-
+const Meetups = require(__dirname + '/src/components/Meetups.jsx');
 
 class App extends React.Component {
   constructor(props) {
@@ -126,7 +126,11 @@ class App extends React.Component {
                   <ChatRoom style={isShowing('Chat')} username={this.state.username} />
                 </span>
               </div>
+
               <div className="col-lg-6 col-lg-pull-6">
+                <Meetups
+                  userLat={this.state.userLocation.lat}
+                  userLong={this.state.userLocation.long} />
                 <UserLegislatorsInfo
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long} />
