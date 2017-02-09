@@ -6,6 +6,11 @@ var util = require('./utility.js');
 var BillAssociate = require('./billAssociate.js');
 var bodyParser = require('body-parser');
 var googleTrends = require('google-trends-api');
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> modifies app to handle cors
 /////////////////////////////////////////////////////////////////
 //AUTHENTICATION
 
@@ -53,6 +58,34 @@ exports.userLogout = function(req, res) {
     res.end();
   });
 };
+
+/////////////////////////////////////////////////////////////////
+exports.queryGoogle = function(req, res) {
+  // console.log('write something')
+  // res.send(200);
+  // console.log('reqparams', req.body);
+  var params = {
+    geo: 'US',
+    // date:
+    keywords: 'immigration',
+    category: 'politics'
+  }
+
+  googleTrends.hotTrendsDetail(params)
+  .then(function(result){
+    console.log('this is the result from server', result);
+    res.send(result.rss.channel[0].item)
+    // callback(result.rss.channel[0].item);
+    // console.log(result.rss.channel[0].item);
+    // callback(result);
+  }).catch(function(err){
+    console.log('error detected', err);
+  })
+
+}
+
+
+/////////////////////////////////////////////////////////////////
 
 
 exports.queryGoogle = function(req, res) {

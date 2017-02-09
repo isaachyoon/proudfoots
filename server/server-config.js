@@ -7,6 +7,10 @@ var path = require('path');
 var handler = require('./lib/request-handler');
 var util = require('./lib/utility.js');
 var cors = require('cors');
+<<<<<<< HEAD
+=======
+
+>>>>>>> modifies app to handle cors
 
 var app = express();
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -32,6 +36,11 @@ app.post('/login', handler.userLogin);
 
 //handles user logout action
 app.get('/logout', handler.userLogout);
+
+/////////////////////////////////////////////////////////////////
+app.post('/queryGoogle', handler.queryGoogle);
+
+/////////////////////////////////////////////////////////////////
 
 //handles user signup action
 app.post('/signup/:username', handler.userSignup);

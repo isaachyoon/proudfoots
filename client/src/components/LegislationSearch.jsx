@@ -7,7 +7,7 @@
 // level
 //
 ////////////////////////////////////////////////////////////////////////////////
-var googleTrends = require('google-trends-api');
+// var googleTrends = require('google-trends-api');
 
 const React = require('react');
 const SearchBar = require('./SearchBar.jsx');
@@ -40,17 +40,12 @@ class LegislationSearch extends React.Component {
       {!this.props.isFetching &&
         <Trends search={this.state.searchGoogle} />
       }
-<<<<<<< HEAD
      </div>
-=======
-      </div>
->>>>>>> adds working GoogleTrend API function
     );
   }
 
   handleSearchSubmit(searchTerms) {
     this.setState({isFetchingSearchResults: true});
-<<<<<<< HEAD
     /////////////////////////////////////////////////////////////////
     // queryGoogle(searchTerms, function(data){
     //   console.log(data);
@@ -65,16 +60,9 @@ class LegislationSearch extends React.Component {
     })
     .catch(function(error){
       console.log(error);
-=======
-    var context = this;
-    ////////////////////////////////////////////////////////////////////////////////////////
-    queryGoogle(searchTerms, function(item) {
-      console.log('logged in searchSubmit', item);
-      context.setState({searchGoogle: item})
->>>>>>> adds working GoogleTrend API function
     })
 
-    ///////////////////////////////////////////////////////////////////////////////////////
+    ////////////////////////////////////////////////////////////////
 
     // AJAX call for a full text search to the Sunlight server
     let ajaxSettings = {
