@@ -7,7 +7,7 @@ var queryGoogle = (query, callback) => {
 	var params = {
 		geo: 'US',
 		// date:
-		keywords: ['politics','trump', query],
+		keywords: query,
 		category: 'politics'
 	}
 

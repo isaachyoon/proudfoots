@@ -7,7 +7,7 @@
 // level
 //
 ////////////////////////////////////////////////////////////////////////////////
-var googleTrends = require('google-trends-api');
+// var googleTrends = require('google-trends-api');
 
 const React = require('react');
 const SearchBar = require('./SearchBar.jsx');
@@ -15,6 +15,7 @@ const SearchResults = require('./SearchResults.jsx');
 const Trends = require('./Trends.jsx');
 // const LegislatorData = require('../data/googTrends.js')
 import queryGoogle from '../data/googTrends.js'
+import axios from 'axios';
 
 class LegislationSearch extends React.Component {
   constructor(props) {
@@ -46,11 +47,21 @@ class LegislationSearch extends React.Component {
     this.setState({isFetchingSearchResults: true});
     var context = this;
     ////////////////////////////////////////////////////////////////////////////////////////
-    queryGoogle(searchTerms, function(item) {
-      console.log('logged in searchSubmit', item);
-      context.setState({searchGoogle: item})
-    })
+    // queryGoogle(searchTerms, function(item) {
+    //   console.log('logged in searchSubmit', item);
+    //   context.setState({searchGoogle: item})
+    // })
 
+    axios.post('http://localhost:8080/queryGoogle/', {
+        query: searchTerms
+    })
+    .then(function(response){
+      console.log('response', response);
+      context.setState({searchGoogle: response.data})
+    })
+    .catch(function(error){
+      console.log('error');
+    })
     ///////////////////////////////////////////////////////////////////////////////////////
 
     // AJAX call for a full text search to the Sunlight server
