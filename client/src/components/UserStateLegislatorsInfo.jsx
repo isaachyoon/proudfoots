@@ -61,6 +61,7 @@ class UserStateLegislatorsInfo extends React.Component {
     // });
 
     this.fetchElectoralDataFromExternalSources();
+    this.fetchGovernorInfoFromWikipedia();
   }
 
     // TEST DATA
@@ -83,6 +84,18 @@ class UserStateLegislatorsInfo extends React.Component {
       this.setState({
         electoralRepresentativesInfo: data,
         isFetchingElectoralData: false});
+    }
+  }
+
+  fetchGovernorInfoFromWikipedia() {
+    $.get('https://en.wikipedia.org/w/api.php?action=query&titles=List%20of%20current%20United%20States%20governors&prop=revisions&rvprop=content&origin=*&format=json', onFetchGovernorInfoFromWikipediaComplete.bind(this), 'json');
+
+    function onFetchGovernorInfoFromWikipediaComplete(data, textStatus, jqXHR) {
+      console.log(data.query.pages[653038].revisions[0]['*']);
+
+      // this.setState({
+      //   electoralRepresentativesInfo: data,
+      //   isFetchingElectoralData: false});
     }
   }
 }

@@ -71,19 +71,21 @@ class App extends React.Component {
           isUserLoggedIn: false
         });
 
-        // hashHistory.push('/about');
+
+
+        hashHistory.push('/about');
 
         // Testing
-        this.setState({
+        // this.setState({
           // Testing Only:
-          isVerifyingUserSession: false,
-          isUserLoggedIn: true,
-          username: 'boba',
-          userLocation: {
-            lat: 37.795,
-            long: -122.40
-          }
-        });
+        //   isVerifyingUserSession: false,
+        //   isUserLoggedIn: true,
+        //   username: 'boba',
+        //   userLocation: {
+        //     lat: 37.795,
+        //     long: -122.40
+        //   }
+        // });
 
       });
   }
