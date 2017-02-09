@@ -29,6 +29,8 @@ const UserSignup = require(__dirname + '/src/components/UserSignup.jsx');
 const UserLogout = require(__dirname + '/src/components/UserLogout.jsx');
 const About = require(__dirname + '/src/components/About.jsx');
 const Trends = require(__dirname + '/src/components/Trends.jsx');
+const ChatRoom = require(__dirname + '/src/components/ChatRoom.jsx');
+
 
 class App extends React.Component {
   constructor(props) {
@@ -68,7 +70,6 @@ class App extends React.Component {
           isVerifyingUserSession: false,
           isUserLoggedIn: false
         });
-
 
         // hashHistory.push('/about');
 
@@ -120,6 +121,10 @@ class App extends React.Component {
                 <span style={isShowing('LegislationSearch')}>
                   <LegislationSearch style={isShowing('LegislationSearch')} username={this.state.username} />
                 </span>
+
+                <span style={isShowing('ChatRoom')}>
+                  <ChatRoom style={isShowing('Chat')} username={this.state.username} />
+                </span>
               </div>
               <div className="col-lg-4 col-lg-pull-4">
                 <UserLegislatorsInfo
@@ -162,6 +167,8 @@ class AppRoutes extends React.Component {
         <Route path="/" component={App}>
           <Route path="/search" components = {{main: 'LegislationSearch'}} />
           <Route path="/dashboard" components = {{main: 'UserDashBoard'}} />
+          <Route path="/chat" components = {{main: 'ChatRoom'}} />
+        <Route path="/logout" component={UserLogout} />
         </Route>
       </Router>
     );
