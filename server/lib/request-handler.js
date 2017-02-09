@@ -4,13 +4,14 @@ var unirest = require('unirest');
 var User = require('./../../db/models/user');
 var util = require('./utility.js');
 var BillAssociate = require('./billAssociate.js');
-
+var bodyParser = require('body-parser');
+var googleTrends = require('google-trends-api');
 /////////////////////////////////////////////////////////////////
 //AUTHENTICATION
 
 exports.userLogin = function(req, res) {
 
-  console.log('request-handler.js: userLogin: entered');  
+  console.log('request-handler.js: userLogin: entered');
   var username = req.body.username;
   var password = req.body.password;
 
@@ -25,22 +26,22 @@ exports.userLogin = function(req, res) {
           res.status(401);
           res.end();
         } else {
-          console.log('request-handler.js: userLogin: username found, comparing passwords');          
+          console.log('request-handler.js: userLogin: username found, comparing passwords');
           util.comparePassword(password, user.password, function(err, match) {
             if (match) {
               console.log('request-handler.js: userLogin: username found, password match');
               //After successful authentication, an express session is created for the user
-                //and user data is sent to client. See utility.js - createSession/sendUserData for more info.   
+                //and user data is sent to client. See utility.js - createSession/sendUserData for more info.
               util.createSession(req, res, user);
             } else {
-              console.log('request-handler.js: userLogin: username found, password DO NOT match');                    
+              console.log('request-handler.js: userLogin: username found, password DO NOT match');
               res.status(401);
               res.end();
             }
           });
         }
       } else {
-        console.log('request-handler.js: userLogin: database error on locating username');    
+        console.log('request-handler.js: userLogin: database error on locating username');
         res.status(401).send(err);
       }
     });
@@ -54,13 +55,39 @@ exports.userLogout = function(req, res) {
 };
 
 
+exports.queryGoogle = function(req, res) {
+  // console.log('write something')
+  // res.send(200);
+  // console.log('reqparams', req.body);
+  var params = {
+    geo: 'US',
+    // date:
+    keywords: 'immigration',
+    category: 'politics'
+  }
+
+  googleTrends.hotTrendsDetail(params)
+  .then(function(result){
+    console.log('this is the result from server', result);
+    res.send(result.rss.channel[0].item)
+    // callback(result.rss.channel[0].item);
+    // console.log(result.rss.channel[0].item);
+    // callback(result);
+  }).catch(function(err){
+    console.log('error detected', err);
+  })
+
+}
+
+
+
 exports.userSignup = function(req, res) {
   var username = req.params.username;
 
   console.log('request-handler.js: userSignup: entered');
 
 /////////////////////////////////////////////////////////////////
-//CHECKS USER DB 
+//CHECKS USER DB
 /////////////////////////////////////////////////////////////////
 
   User.findOne({ username: username})
@@ -99,7 +126,7 @@ exports.userSignup = function(req, res) {
         // building address string to feed to geoCode
         ///////////////////////////////////////////////
 
-        var streetAddress = userAddress['houseNum'].toString();        
+        var streetAddress = userAddress['houseNum'].toString();
         streetAddress = streetAddress.concat(
           ' ',
           userAddress['streetName'],
@@ -109,7 +136,7 @@ exports.userSignup = function(req, res) {
           userAddress['state']
           );
 
-        console.log('request-handler.js: userSignup: streetAddress:', streetAddress);        
+        console.log('request-handler.js: userSignup: streetAddress:', streetAddress);
 
         ////////////////////////////////////////////
         util.geoCodeit(res, userInfo, streetAddress, function(err, response) {
@@ -162,7 +189,7 @@ exports.insertWordMonitor = function(req, res) {
 
   console.log('request-handler.js: insertWordMonitor: insert keywords:', keywords);
 
-  User.findOne( {username: username} ) 
+  User.findOne( {username: username} )
     .exec(function(err, user) {
       if (!err) {
         if (!user) {
@@ -180,7 +207,7 @@ exports.insertWordMonitor = function(req, res) {
           // See if this keyword already exist
           if (user['keywords'][keywords] !== undefined) {
             // If so, don't need to do anything
-            console.log('request-handler.js: insertWordMonitor: keyword already exist');            
+            console.log('request-handler.js: insertWordMonitor: keyword already exist');
             res.status(200).end();
           } else {
             // Else we create a new keyword
@@ -195,7 +222,7 @@ exports.insertWordMonitor = function(req, res) {
                     res.end();
                   } else {
                   // Save to DB
-                  
+
                     user.markModified('keywords');
                     user.save(function (err) {
                       if (err) {
@@ -211,7 +238,7 @@ exports.insertWordMonitor = function(req, res) {
                   }
                 });
               } else {
-                console.log('request-handler.js: insertWordMonitor: keyword adding failed');                   
+                console.log('request-handler.js: insertWordMonitor: keyword adding failed');
                 res.status(500).send(err);
                 res.end();
               }
@@ -268,7 +295,7 @@ exports.deleteWordMonitor = function(req, res) {
         res.status(401).send(err);
         res.end();
       }
-    }); 
+    });
 };
 
 
