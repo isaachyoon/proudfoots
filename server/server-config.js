@@ -14,6 +14,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.use(bodyParser.json());
 app.use(cors());
+
+
+
 /////////////////////////////////////////////////////////////////
 //AUTHENTICATION
 //express session
@@ -22,6 +25,8 @@ app.use(session({
   resave: false,
   saveUninitialized: true,
 }));
+
+app.get('/getMeetups', handler.getMeetups);
 
 //endpoint for client request for current session's validity
 //if current session logged in: respond with logged in user's information to client (status code: 200)

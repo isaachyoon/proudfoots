@@ -20,6 +20,10 @@ const React = require('react');
 
 const StateLegislatorInfo = require('./StateLegislatorInfo.jsx');
 
+// governor data from hardcoded js file. TODO: scrape this from somewhere so it's dynamic
+const GovernorData = require('../data/GovernorData.js');
+const StateAbbreviationMap = require('../data/StateAbbreviationMap.js');
+
 class UserStateLegislatorsInfo extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +32,9 @@ class UserStateLegislatorsInfo extends React.Component {
     this.state = {
       isFetchingElectoralData: true,
       electoralRepresentativesInfo: undefined,
-      electoralInfo: undefined
+      electoralInfo: undefined,
+      governor: undefined,
+      governorParty: undefined
     };
 
     this.render = this.render.bind(this);
@@ -47,6 +53,8 @@ class UserStateLegislatorsInfo extends React.Component {
       {!this.state.isFetchingElectoralData &&
         <UserStateLegislatorsInfoPresentational
           senatorsInfo={this.state.electoralRepresentativesInfo}
+          governor={this.state.governor}
+          governorParty={this.state.governorParty}
         />
       }
       </div>
@@ -61,6 +69,7 @@ class UserStateLegislatorsInfo extends React.Component {
     // });
 
     this.fetchElectoralDataFromExternalSources();
+    this.getGovernorByState();
   }
 
     // TEST DATA
@@ -68,7 +77,27 @@ class UserStateLegislatorsInfo extends React.Component {
     //   lat: 37.795,
     //   long: -122.40
     // }
+  getGovernorByState() {
+    console.log('this.props.userState', this.props.userState);
 
+    var state;
+
+    if (this.props.userState.length === 2) {
+      var stateAbbreviation = this.props.userState.toUpperCase();
+
+      state = StateAbbreviationMap[stateAbbreviation];
+    } else {
+      state = this.props.userState.slice(0, 1).toUpperCase()
+        + this.props.userState.slice(1, this.props.userState.length).toLowerCase();
+    }
+
+
+    this.setState({
+      governor: GovernorData[state].governor,
+      governorParty: GovernorData[state].party});
+
+    // console.log('state', state);
+  }
 
   fetchElectoralDataFromExternalSources() {
     let queryParameters = {
@@ -96,11 +125,17 @@ class UserStateLegislatorsInfo extends React.Component {
 class UserStateLegislatorsInfoPresentational extends React.Component {
   render() {
     return (
-        <div className="panel panel-default topMargin">
+      <div className="panel panel-default topMargin">
         <div className="panel-heading red">
           <h3 className="panel-title">Your Local Representatives:</h3>
         </div>
+
         <div className = "panel-body reduceTop">
+          <h3>Governor</h3>
+          <div className="panel-heading" >
+            <h3 className="panel-title">{this.props.governor} ({this.props.governorParty})</h3>
+          </div>
+
           <h3>State Legislators</h3>
           {this.props.senatorsInfo.map((senatorInfo, index) => {
             return (

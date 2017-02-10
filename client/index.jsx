@@ -30,7 +30,7 @@ const UserLogout = require(__dirname + '/src/components/UserLogout.jsx');
 const About = require(__dirname + '/src/components/About.jsx');
 const Trends = require(__dirname + '/src/components/Trends.jsx');
 const ChatRoom = require(__dirname + '/src/components/ChatRoom.jsx');
-
+const Meetups = require(__dirname + '/src/components/Meetups.jsx');
 
 class App extends React.Component {
   constructor(props) {
@@ -40,6 +40,7 @@ class App extends React.Component {
       isVerifyingUserSession: true,
       isUserLoggedIn: false,
       username: '',
+      userState: '',
       userLocation: {
         lat: undefined,
         long: undefined
@@ -53,11 +54,11 @@ class App extends React.Component {
     $.get('login')
       .done((data) => {
         // Debug
-        // console.log(data);
         this.setState({
           isVerifyingUserSession: false,
           isUserLoggedIn: true,
           username: data.username,
+          userState: data.location.state,
           userLocation: data.geoLocation,
           userMonitoredKeywords: data.keywords
         });
@@ -71,19 +72,21 @@ class App extends React.Component {
           isUserLoggedIn: false
         });
 
-        // hashHistory.push('/about');
+
+
+        hashHistory.push('/about');
 
         // Testing
-        this.setState({
+        // this.setState({
           // Testing Only:
-          isVerifyingUserSession: false,
-          isUserLoggedIn: true,
-          username: 'boba',
-          userLocation: {
-            lat: 37.795,
-            long: -122.40
-          }
-        });
+        //   isVerifyingUserSession: false,
+        //   isUserLoggedIn: true,
+        //   username: 'boba',
+        //   userLocation: {
+        //     lat: 37.795,
+        //     long: -122.40
+        //   }
+        // });
 
       });
   }
@@ -131,6 +134,10 @@ class App extends React.Component {
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long} />
                 <UserStateLegislatorsInfo
+                  userLat={this.state.userLocation.lat}
+                  userLong={this.state.userLocation.long}
+                  userState={this.state.userState} />
+                <Meetups
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long} />
               </div>
