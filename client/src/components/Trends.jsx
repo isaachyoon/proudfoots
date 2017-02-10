@@ -12,7 +12,6 @@ class Trends extends React.Component {
 
   render() {
   	var snippet = 'ht:news_item';
-  	console.log('props under render', this.props.search)
   	return(
   		<div>
 

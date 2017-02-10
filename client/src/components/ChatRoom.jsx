@@ -67,14 +67,17 @@ class ChatRoom extends React.Component {
       messages: [...this.state.messages, message]
     });
 
-    this.socket.emit('message', message)
-    console.log("message sent from front end")
+    this.socket.emit('message', message);
+    console.log("message sent from front end");
+    var objDiv = document.getElementById('chatroom');
+    objDiv.scrollTop = objDiv.scrollHeight;
   }
 
   render() {
     return(
-      <div className="container-fluid">
+      <div className="chatlabel">
       <h3>Chat Room</h3>
+      <div className="chatroom" id="chatroom">
         <ul id="messages">
           {this.state.messages.map((message, index) => {
             return <li key={index}>
@@ -83,17 +86,18 @@ class ChatRoom extends React.Component {
             </li>
           })}
         </ul>
-          <footer className="navbar-fixed-bottom" style={{width: 810, marginLeft: 450, marginBottom: 20}}>
+        </div>
+          <div className="chatForm">
           <form action="">
             <label>Discuss your thoughts:</label><br />
               <span className="input-group">
                 <input id="message" className="form-control" type="text" placeholder="Enter Message" value={this.state.message} onChange={this.textHandler} onKeyDown={this.handleSubmit} autoComplete="off" />
                   <span className="input-group-btn">
-                  <button className="btn btn-default" onClick={this.handleSubmit} >Send</button>
+                  <button className="btn blue" onClick={this.handleSubmit} >Send</button>
                   </span>
               </span>
-          </form>
-          </footer>
+          </form><br/>
+          </div>
       </div>
     );
   }

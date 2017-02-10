@@ -113,7 +113,7 @@ class App extends React.Component {
           <NavigationBar username={this.state.username}/>
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-4 col-lg-push-8">
+              <div className="col-lg-6 col-lg-push-6">
                 <span style={isShowing('UserDashBoard')}>
                   <UserDashBoard username={this.state.username} userMonitoredKeywords={this.state.userMonitoredKeywords} />
                 </span>
@@ -126,12 +126,10 @@ class App extends React.Component {
                   <ChatRoom style={isShowing('Chat')} username={this.state.username} />
                 </span>
               </div>
-              <div className="col-lg-4 col-lg-pull-4">
+              <div className="col-lg-6 col-lg-pull-6">
                 <UserLegislatorsInfo
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long} />
-              </div>
-              <div className="col-lg-4 col-lg-pull-4">
                 <UserStateLegislatorsInfo
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long} />

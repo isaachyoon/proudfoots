@@ -12,5 +12,23 @@ body {
   border-color: #2e6da4 !important;
 }
 .topMargin {
-  top-margin: 25px;
+  margin-top: 15px;
+}
+.reduceTop {
+  margin-top: -20px;
+}
+.chatForm {
+  position: fixed;
+  background-color: #ffffff;
+  bottom: 0;
+  margin-bottom: 0px;
+  margin-right:10px;
+}
+.chatlabel{
+  position: fixed;
+}
+.chatroom {
+  height: 62vh;
+  width: 50vw;
+  overflow-y: scroll !important;
 }

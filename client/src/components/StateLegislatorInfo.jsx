@@ -29,10 +29,10 @@ class StateLegislatorInfoPresentational extends React.Component {
     let info = this.props.info;
     return (
       <div className="panel panel-default" >
-        <div className="panel-heading">
+        <div className="panel-heading" data-toggle="collapse" data-target={'#' + info.chamber}>
           <h3 className="panel-title">{info.full_name}</h3>
         </div>
-
+      <div id={info.chamber} className="collapse">
         <table className="table">
           <tbody>
             <tr>
@@ -45,6 +45,7 @@ class StateLegislatorInfoPresentational extends React.Component {
                 <tr key={index}>
                   <td colSpan='2'>
                     <table className="table">
+                    <tbody>
                       <tr>
                         <td><b>{office.type}</b> Office Address:</td>
                       </tr>
@@ -54,6 +55,7 @@ class StateLegislatorInfoPresentational extends React.Component {
                       <tr>
                         <td>{office.phone}</td>
                       </tr>
+                      </tbody>
                     </table>
                   </td>
                 </tr>
@@ -104,6 +106,7 @@ class StateLegislatorInfoPresentational extends React.Component {
             }
           </tbody>
         </table>
+      </div>
       </div>
     );
   }

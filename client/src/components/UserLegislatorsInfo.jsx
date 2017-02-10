@@ -147,12 +147,12 @@ class UserLegislatorsInfo extends React.Component {
 class UserLegislatorsInfoPresentational extends React.Component {
   render() {
     return (
-      <div className="panel panel-default leftPanel">
+      <div className="panel panel-default topMargin">
         <div className="panel-heading red">
           <h3 className="panel-title">Your Electoral Info:</h3>
           <h4 className="red">{this.props.electoralInfo.state} - {this.props.electoralInfo.districtName}</h4>
         </div>
-        <div className = "panel-body">
+        <div className = "panel-body reduceTop">
           <h3>House of Representatives</h3>
           <LegislatorInfo info={this.props.houseRepInfo}/>
           <h3>Senate</h3>
