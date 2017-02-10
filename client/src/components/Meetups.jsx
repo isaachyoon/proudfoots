@@ -68,6 +68,9 @@ class Meetups extends React.Component {
     // https://api.meetup.com/find/groups?format=json&photo-host=public&zip=94103&page=20&sig_id=159286762&radius=1&category=13&sig=1c6ac121a3988a353b1ebde57690c514209b0604
     // $.get('https://api.meetup.com/find/groups', queryParameters, onFetchMeetupsComplete.bind(this));
     // $.get('https://api.meetup.com1/find/groups2?zip=11211&radius=1&category=253&order=members4', onFetchMeetupsComplete.bind(this));
+
+    // we ping our express server and get it to make the api call
+    // avoids cors complexity
     $.get('/getMeetups', onFetchMeetupsComplete.bind(this));
 
     function onFetchMeetupsComplete(data, textStatus, jqXHR) {

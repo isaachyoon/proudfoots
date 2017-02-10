@@ -40,6 +40,7 @@ class App extends React.Component {
       isVerifyingUserSession: true,
       isUserLoggedIn: false,
       username: '',
+      userState: '',
       userLocation: {
         lat: undefined,
         long: undefined
@@ -53,11 +54,11 @@ class App extends React.Component {
     $.get('login')
       .done((data) => {
         // Debug
-        // console.log(data);
         this.setState({
           isVerifyingUserSession: false,
           isUserLoggedIn: true,
           username: data.username,
+          userState: data.location.state,
           userLocation: data.geoLocation,
           userMonitoredKeywords: data.keywords
         });
@@ -128,7 +129,6 @@ class App extends React.Component {
                   <ChatRoom style={isShowing('Chat')} username={this.state.username} />
                 </span>
               </div>
-
               <div className="col-lg-6 col-lg-pull-6">
                 <Meetups
                   userLat={this.state.userLocation.lat}
@@ -138,7 +138,8 @@ class App extends React.Component {
                   userLong={this.state.userLocation.long} />
                 <UserStateLegislatorsInfo
                   userLat={this.state.userLocation.lat}
-                  userLong={this.state.userLocation.long} />
+                  userLong={this.state.userLocation.long}
+                  userState={this.state.userState} />
               </div>
             </div>
           </div>

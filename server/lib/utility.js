@@ -84,7 +84,7 @@ exports.geoCodeit = function(res, userInfo, streetAddress, cb) {
 exports.keywordBuilder = function(user, searchWord, cb) {
   var strArr = searchWord.split(' ');
   var keywordObj = {keyword: searchWord, associatedKeywords: []};
-  //console.log('utility.js: keywordBuilder: entered with new keyword:', keywordObj);   
+  //console.log('utility.js: keywordBuilder: entered with new keyword:', keywordObj);
   if (strArr.length > 1) {
     keywordObj['associatedKeywords'] = [];
     user.keywords[searchWord] = keywordObj;
@@ -94,7 +94,7 @@ exports.keywordBuilder = function(user, searchWord, cb) {
     //console.log('utility.js: keywordBuilder: single keywords detected, user.keywords:', user.keywords);
     var searchTerm = 'entry=';
     searchTerm = searchTerm.concat(searchWord);
-    // console.log('utility.js: keywordBuilder: sending API with searchWord:', searchWord);    
+    // console.log('utility.js: keywordBuilder: sending API with searchWord:', searchWord);
     // console.log('utility.js: keywordBuilder: sending API with term:', searchTerm);
     unirest.post('https://twinword-word-associations-v1.p.mashape.com/associations/')
       .header('X-Mashape-Key', apiKey.wordAssocAPIk['key'])
@@ -105,7 +105,7 @@ exports.keywordBuilder = function(user, searchWord, cb) {
         // console.log('utility.js: keywordBuilder: word association API call complete: result.body', result.body);
         // console.log('utility.js: keywordBuilder: word association API call complete: result.error', result.error);
         if (result.error) {
-          // console.log('utility.js: keywordBuilder: word association API call failed:', result.error);   
+          // console.log('utility.js: keywordBuilder: word association API call failed:', result.error);
           cb(result.error);
         } else {
           var words = result.body['associations_array'];
