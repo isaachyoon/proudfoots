@@ -176,6 +176,8 @@ class AppRoutes extends React.Component {
         <Route path="/logout" component={UserLogout} />
         <Route path="/trends" component={Trends}/>
         <Route path="/" component={App}>
+
+          <IndexRoute component={{main: 'LegislatorsInfo'}} />
           <Route path="/legislators" components = {{main: 'LegislatorsInfo'}} />
           <Route path="/meetups" components = {{main: 'Meetups'}} />
           <Route path="/search" components = {{main: 'LegislationSearch'}} />
