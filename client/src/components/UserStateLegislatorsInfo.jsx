@@ -125,14 +125,16 @@ class UserStateLegislatorsInfo extends React.Component {
 class UserStateLegislatorsInfoPresentational extends React.Component {
   render() {
     return (
-        <div className="panel panel-default topMargin">
+      <div className="panel panel-default topMargin">
         <div className="panel-heading red">
           <h3 className="panel-title">Your Local Representatives:</h3>
         </div>
 
         <div className = "panel-body reduceTop">
           <h3>Governor</h3>
-          <p>{this.props.governor} ({this.props.governorParty})</p>
+          <div className="panel-heading" >
+            <h3 className="panel-title">{this.props.governor} ({this.props.governorParty})</h3>
+          </div>
 
           <h3>State Legislators</h3>
           {this.props.senatorsInfo.map((senatorInfo, index) => {
