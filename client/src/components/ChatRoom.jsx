@@ -88,7 +88,7 @@ class ChatRoom extends React.Component {
         </ul>
         </div>
           <div className="chatForm">
-          <form action="">
+          <form action="" className="form-group">
             <label>Discuss your thoughts:</label><br />
               <span className="input-group">
                 <span className="input-group-addon blue"><span className="glyphicon glyphicon-pencil" aria-hidden="true"></span></span>

@@ -117,7 +117,9 @@ class App extends React.Component {
           <NavigationBar username={this.state.username}/>
           <div className="container-fluid">
             <div className="row">
-              <div className="col-lg-12">
+
+              <div className="col-lg-1"></div>
+              <div className="col-lg-10">
                 <span style={isShowing('UserDashBoard')}>
                   <UserDashBoard username={this.state.username} userMonitoredKeywords={this.state.userMonitoredKeywords} />
                 </span>
@@ -145,8 +147,8 @@ class App extends React.Component {
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long} />
                 </span>
-
               </div>
+              <div className="col-lg-1"></div>
             </div>
           </div>
         </div>
