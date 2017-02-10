@@ -130,9 +130,6 @@ class App extends React.Component {
                 </span>
               </div>
               <div className="col-lg-6 col-lg-pull-6">
-                <Meetups
-                  userLat={this.state.userLocation.lat}
-                  userLong={this.state.userLocation.long} />
                 <UserLegislatorsInfo
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long} />
@@ -140,6 +137,9 @@ class App extends React.Component {
                   userLat={this.state.userLocation.lat}
                   userLong={this.state.userLocation.long}
                   userState={this.state.userState} />
+                <Meetups
+                  userLat={this.state.userLocation.lat}
+                  userLong={this.state.userLocation.long} />
               </div>
             </div>
           </div>
