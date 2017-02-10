@@ -29,5 +29,6 @@ body {
 }
 .chatroom {
   height: 62vh;
+  width: 81vw;
   overflow-y: scroll !important;
 }
