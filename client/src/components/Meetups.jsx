@@ -50,18 +50,18 @@ class Meetups extends React.Component {
 
   fetchMeetups() {
 
-    let queryParameters = {
-      // lat: this.props.userLat,
-      // long: this.props.userLong
-      format: 'json',
-      'photo-host': 'public',
-      zip: 94103,
-      page: 20,
-      'sig_id': 159286762,
-      radius: 1,
-      category: 13,
-      sig: '1c6ac121a3988a353b1ebde57690c514209b0604'
-    };
+    // let queryParameters = {
+    //   // lat: this.props.userLat,
+    //   // long: this.props.userLong
+    //   format: 'json',
+    //   'photo-host': 'public',
+    //   zip: 94103,
+    //   page: 20,
+    //   'sig_id': 159286762,
+    //   radius: 1,
+    //   category: 13,
+    //   sig: '1c6ac121a3988a353b1ebde57690c514209b0604'
+    // };
 
     // signed url
     // probably won't work bc meetups cors implementation uses Oauth, so this is a note

@@ -26,7 +26,6 @@ app.use(session({
   saveUninitialized: true,
 }));
 
-app.get('/getMeetups', handler.getMeetups);
 
 //endpoint for client request for current session's validity
 //if current session logged in: respond with logged in user's information to client (status code: 200)
@@ -62,5 +61,8 @@ app.use(express.static(path.join(__dirname + '/../client')));
 
 //handles bill search
 app.post('/searchterm', handler.termSearch);
+
+// gets meetups from meetup.com api.
+app.get('/getMeetups', handler.getMeetups);
 
 module.exports = app;
