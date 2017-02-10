@@ -1,4 +1,34 @@
 body {
-  padding-top: 65px;
+  padding-top: 65px; 
 }
-
+.red {
+  color: #ffffff !important;
+  background-color: #eb6864 !important;
+  border-color: #eb6864!important;
+}
+.blue {
+  color: #ffffff !important;
+  background-color: #2e6da4 !important;
+  border-color: #2e6da4 !important;
+}
+.topMargin {
+  margin-top: 15px;
+}
+.reduceTop {
+  margin-top: -20px;
+}
+.chatForm {
+  position: fixed;
+  background-color: #ffffff;
+  bottom: 0;
+  margin-bottom: 0px;
+  margin-right:10px;
+}
+.chatlabel{
+  position: fixed;
+}
+.chatroom {
+  height: 62vh;
+  width: 50vw;
+  overflow-y: scroll !important;
+}

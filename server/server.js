@@ -1,13 +1,12 @@
 // Initiate connection to DB
 var mongoose = require('mongoose');
 //MONGODB CONNECTION
-mongoose.connect('mongodb://localhost/billfetchertest');
+var dbURL = require('./lib/api_config.js');
+mongoose.connect(dbURL.dbURL);
 //import socket.io and http because socket.io rely on http to connect.
 var socketIo = require('socket.io');
 var http = require('http');
 var app = require('./server-config.js');
-
-
 
 //HTTP SERVER CONNECTION
 var port = process.env.PORT || 8080;

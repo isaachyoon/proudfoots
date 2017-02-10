@@ -14,8 +14,7 @@ const SearchBar = require('./SearchBar.jsx');
 const SearchResults = require('./SearchResults.jsx');
 const Trends = require('./Trends.jsx');
 // const LegislatorData = require('../data/googTrends.js')
-const Trends = require('./Trends.jsx');
-import queryGoogle from '../data/googTrends.js'
+import queryGoogle from '../data/googTrends.js';
 import axios from 'axios';
 
 class LegislationSearch extends React.Component {

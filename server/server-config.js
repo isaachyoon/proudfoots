@@ -20,7 +20,7 @@ app.use(cors());
 app.use(session({
   secret: 'shhh, it\'s a secret',
   resave: false,
-  saveUnitialized: true,
+  saveUninitialized: true,
 }));
 
 //endpoint for client request for current session's validity

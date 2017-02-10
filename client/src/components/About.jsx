@@ -87,7 +87,7 @@ class About extends React.Component {
 
               <h3>Get in touch</h3>
 
-              <form action="#" method="post">
+              <form action="mailto:brandybucks@brandybucks.com" method="post" enctype="text/plain">
 
                 <div className="field half first">
                   <label htmlFor="name">Name</label>

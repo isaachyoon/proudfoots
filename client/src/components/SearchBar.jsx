@@ -41,10 +41,10 @@ class SearchBarPresentational extends React.Component {
         <form className="form-group" onSubmit={this.props.onSubmit}>
           <label htmlFor="searchTerms">Search by Keywords:</label><br />
           <div className="input-group">
-            <span className="input-group-addon"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></span>
+            <span className="input-group-addon blue"><span className="glyphicon glyphicon-search" aria-hidden="true"></span></span>
             <input className="form-control" type="text" id="searchTerms" placeholder="Enter Keywords" onChange={this.props.onSearchInputChange}></input>
              <span className="input-group-btn">
-                <button type="submit" className="btn btn-default">Search</button>
+                <button type="submit" className="btn blue">Search</button>
              </span>   
           </div>           
         </form> 
