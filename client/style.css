@@ -22,13 +22,13 @@ body {
   background-color: #ffffff;
   bottom: 0;
   margin-bottom: 0px;
-  margin-right:10px;
+  width: 81vw;
 }
 .chatlabel{
   position: fixed;
 }
 .chatroom {
   height: 62vh;
-  width: 50vw;
+  width: 81vw;
   overflow-y: scroll !important;
 }
