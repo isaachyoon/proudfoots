@@ -2,6 +2,7 @@ var apiKey = require('./api_config.js');
 var path = require('path');
 var unirest = require('unirest');
 var User = require('./../../db/models/user');
+var Message = require('./../../db/models/message')
 var util = require('./utility.js');
 var BillAssociate = require('./billAssociate.js');
 var bodyParser = require('body-parser');
@@ -139,6 +140,31 @@ exports.queryGoogle = function(req, res) {
   })
 
 }
+
+/////////////////////////////////////////////////////////////////
+// HANDLES DELETION OF MONITORED WORDS
+/////////////////////////////////////////////////////////////////
+exports.retrieveMessages = function(req, res) {
+  // Message.find({}, function(err, data) {
+  //   if (err) throw err;
+  //   console.log(data)
+  //   res.send("data fetched", data.body)
+  // })
+  res.send('HI')
+};
+
+exports.postMessage = function(req, res) {
+  var message = new Message({
+    user: req.query.user,
+    message: req.query.message
+  })
+  console.log(message)
+  res.send(message)
+}
+
+
+
+/////////////////////////////////////////////////////////////////
 
 
 
