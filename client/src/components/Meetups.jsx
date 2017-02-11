@@ -29,15 +29,85 @@ class Meetups extends React.Component {
     return {__html: markup};
   }
 
+
+
   render() {
-    // console.log(this.state.localMeetups);
+
+    const photoDivStyle = {
+      width: '130px',
+      float: 'left',
+      'marginRight': '10px',
+      'marginBottom': '10px'
+    };
+
+    const meetupItemDivs = {
+      'overflowWrap': 'break-word',
+      'wordWrap': 'break-word'
+    };
+
+    const radiusSelectStyle = {
+      display: 'inline-block',
+      float: 'right',
+      marginRight: '15px',
+    };
+
+    const radiusNumbers = {
+      color: 'white'
+    };
+
+    // const activeRadiusNumber = {
+    //   color: 'grey'
+    // };
+
+
+
     return (
-      <div className="panel panel-default">
-        <div className="panel-body">
-          <h3>Meetups</h3>
+      <div className="panel panel-default topMargin">
+        <div className="panel-heading red">
+          <h3 className="panel-title">
+            Your Local Political and 'Movement' Meetups:
+            <div style={radiusSelectStyle}>
+              Search Radius (miles from home):
+              <span onClick={this.fetchMeetups.bind(this, 1)} style={radiusNumbers}> 1</span>
+              <span onClick={this.fetchMeetups.bind(this, 5)} style={radiusNumbers}> 5</span>
+              <span onClick={this.fetchMeetups.bind(this, 10)} style={radiusNumbers}> 10</span>
+              <span onClick={this.fetchMeetups.bind(this, 25)} style={radiusNumbers}> 25</span>
+            </div>
+          </h3>
+        </div>
+
+        <div className="panel-body topMargin">
           {this.state.localMeetups.map((meetup, index) => {
-            console.log('meetup', meetup);
-            return <div dangerouslySetInnerHTML={this.createMarkup(meetup.description)} />;
+            // console.log('meetup', meetup);
+            return (
+              <div className="panel panel-default" key={meetup.id} >
+                <div className="panel-heading" data-toggle="collapse" data-target={'#' + meetup.id}>
+                  <h3 className="panel-title">{meetup.name}</h3>
+                </div>
+
+                <div id={meetup.id} className="collapse">
+                  <table className="table">
+                    <tbody>
+                      <tr>
+                        <td><a href={meetup.link} target="_blank">{meetup.link}</a></td>
+                      </tr>
+                      <tr>
+                        <td>
+                          {meetup.photos &&
+                            <div style={photoDivStyle}>
+                              <img style={{width: '100%', height: 'auto'}} src={meetup.photos[0].photo_link} />
+                            </div>
+                          }
+                          <div style={meetupItemDivs}
+                            dangerouslySetInnerHTML={this.createMarkup(meetup.description)}>
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            );
           })}
         </div>
       </div>
@@ -45,40 +115,18 @@ class Meetups extends React.Component {
   }
 
   componentDidMount() {
-    this.fetchMeetups();
+    this.fetchMeetups(1);
   }
 
-  fetchMeetups() {
-
-    let queryParameters = {
-      // lat: this.props.userLat,
-      // long: this.props.userLong
-      format: 'json',
-      'photo-host': 'public',
-      zip: 94103,
-      page: 20,
-      'sig_id': 159286762,
-      radius: 1,
-      category: 13,
-      sig: '1c6ac121a3988a353b1ebde57690c514209b0604'
-    };
-
-    // signed url
-    // probably won't work bc meetups cors implementation uses Oauth, so this is a note
-    // https://api.meetup.com/find/groups?format=json&photo-host=public&zip=94103&page=20&sig_id=159286762&radius=1&category=13&sig=1c6ac121a3988a353b1ebde57690c514209b0604
-    // $.get('https://api.meetup.com/find/groups', queryParameters, onFetchMeetupsComplete.bind(this));
-    // $.get('https://api.meetup.com1/find/groups2?zip=11211&radius=1&category=253&order=members4', onFetchMeetupsComplete.bind(this));
-
-    // we ping our express server and get it to make the api call
-    // avoids cors complexity
-    $.get('/getMeetups', onFetchMeetupsComplete.bind(this));
+  fetchMeetups(searchRadius) {
 
     function onFetchMeetupsComplete(data, textStatus, jqXHR) {
-
       this.setState({
         localMeetups: data.body
       });
     }
+
+    $.get('/getMeetups', {searchRadius: searchRadius}, onFetchMeetupsComplete.bind(this));
   }
 }
 

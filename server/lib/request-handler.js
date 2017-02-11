@@ -12,11 +12,26 @@ var googleTrends = require('google-trends-api');
 //TONY TESTING FOR MEETUP API CONNECTION
 
 exports.getMeetups = function(req, res) {
-  // res.send('cats');
-  unirest.get('https://api.meetup.com/find/groups?format=json&photo-host=public&zip=94103&page=20&sig_id=159286762&radius=1&category=13&sig=1c6ac121a3988a353b1ebde57690c514209b0604')
-  .end(function(response) {
-    res.send(response);
-  });
+
+  console.log('req.query.searchRadius', req.query.searchRadius);
+
+  var queryString = 'https://api.meetup.com/find/groups';
+  unirest.get(queryString)
+    .query({
+      // format: 'json',
+      // photohost: 'public',
+      lat: req.session.user.latitude,
+      lon: req.session.user.longitude,
+      page: 500,
+      // 'sig_id': 159286762,
+      radius: req.query.searchRadius,
+      category: 13,
+      sign: true,
+      key: '415a2c7626b621d2d652a192c17154'
+    })
+    .end(function(response) {
+      res.send(response);
+    });
 };
 
 /////////////////////////////////////////////////////////////////
