@@ -131,8 +131,9 @@ class App extends React.Component {
                 <span style={isShowing('ChatRoom')}>
                   <ChatRoom style={isShowing('Chat')} username={this.state.username} />
                 </span>
-
-
+                <span style={isShowing('Trends')}>
+                  <Trends style={isShowing('Trends')} username={this.state.username} />
+                </span>
                 <span style={isShowing('LegislatorsInfo')}>
                   <LegislatorsInfo
                   style={isShowing('LegislatorsInfo')} 
@@ -176,10 +177,9 @@ class AppRoutes extends React.Component {
         <Route path="/login" component={UserLogin} />
         <Route path="/signup" component={UserSignup} />
         <Route path="/logout" component={UserLogout} />
-        <Route path="/trends" component={Trends}/>
         <Route path="/" component={App}>
-
           <IndexRoute component={{main: 'LegislatorsInfo'}} />
+          <Route path="/trends" component={{main: 'Trends'}} />
           <Route path="/legislators" components = {{main: 'LegislatorsInfo'}} />
           <Route path="/meetups" components = {{main: 'Meetups'}} />
           <Route path="/search" components = {{main: 'LegislationSearch'}} />
