@@ -56,6 +56,14 @@ app.put('/user/:username/keywords', handler.insertWordMonitor);
 app.delete('/user/:username/keywords', handler.deleteWordMonitor);
 /////////////////////////////////////////////////////////////////
 
+/////////////////////////////////////////////////////////////////
+//CHAT MESSAGE FUNCTION
+app.get('/getallmessage', handler.retrieveMessages);
+
+app.post('/addmessage', handler.postMessage);
+
+/////////////////////////////////////////////////////////////////
+
 //server up static files
 app.use(express.static(path.join(__dirname + '/../client')));
 

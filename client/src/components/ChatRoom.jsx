@@ -1,5 +1,6 @@
 const React = require('react');
-const io = require('socket.io-client')
+const io = require('socket.io-client');
+const axiosHelper = require('./axios_helper/AxiosHelper.js');
 
 class ChatRoom extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class ChatRoom extends React.Component {
     this.textHandler = this.textHandler.bind(this);
     this.handleMessage = this.handleMessage.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.saveMessageToDB = this.saveMessageToDB.bind(this);
   }
 
   //handle text area change and set to message state.
@@ -22,6 +24,16 @@ class ChatRoom extends React.Component {
       message: event.target.value
     });
   }
+
+  // componentWillMount() {
+  //   axiosHelper.getAllMessage()
+  //   .then((resp) => {
+  //     console.log("Data retrieve!!!!!", resp.data)
+  //   })
+  //   .catch((err) => {
+  //     console.log('Could not retrieve message!!')
+  //   })
+  // }
 
   //for all socket.io events need to handle by componentDidMount.
   componentDidMount() {
@@ -53,15 +65,28 @@ class ChatRoom extends React.Component {
     }
   }
 
+  saveMessageToDB(message) {
+    axiosHelper.addMessage(message)
+    .then((resp) => {
+      console.log('Message saved!!!',resp.data)
+    })
+    .catch((err) => {
+      console.log('Could not save message!')
+    })
+  }
+
   //this method will create the message object with message and user name then socket.oi will emit the message object to the server socket.
   handleMessage (event) {
     event.preventDefault()
-    const body = this.state.message;
+    const aMessage = this.state.message;
     const user = this.props.username;
+
     const message = {
-      body,
+      message: aMessage,
       user
     }
+
+    //this.saveMessageToDB(message)
 
     this.setState({
       messages: [...this.state.messages, message]
@@ -82,7 +107,7 @@ class ChatRoom extends React.Component {
           {this.state.messages.map((message, index) => {
             return <li key={index}>
               <b>{message.user}: </b>
-              {message.body}
+              {message.message}
             </li>
           })}
         </ul>
