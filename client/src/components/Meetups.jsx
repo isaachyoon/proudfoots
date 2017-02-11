@@ -55,6 +55,10 @@ class Meetups extends React.Component {
       color: 'white'
     };
 
+    // const activeRadiusNumber = {
+    //   color: 'grey'
+    // };
+
 
 
     return (
@@ -64,10 +68,10 @@ class Meetups extends React.Component {
             Your Local Political and 'Movement' Meetups:
             <div style={radiusSelectStyle}>
               Search Radius (miles from home):
-              <a href="#" onClick={this.fetchMeetups.bind(this, 1)} style={radiusNumbers}> 1</a>
-              <a href="#" onClick={this.fetchMeetups.bind(this, 5)} style={radiusNumbers}> 5</a>
-              <a href="#" onClick={this.fetchMeetups.bind(this, 10)} style={radiusNumbers}> 10</a>
-              <a href="#" onClick={this.fetchMeetups.bind(this, 25)} style={radiusNumbers}> 25</a>
+              <span onClick={this.fetchMeetups.bind(this, 1)} style={radiusNumbers}> 1</span>
+              <span onClick={this.fetchMeetups.bind(this, 5)} style={radiusNumbers}> 5</span>
+              <span onClick={this.fetchMeetups.bind(this, 10)} style={radiusNumbers}> 10</span>
+              <span onClick={this.fetchMeetups.bind(this, 25)} style={radiusNumbers}> 25</span>
             </div>
           </h3>
         </div>
@@ -115,6 +119,7 @@ class Meetups extends React.Component {
   }
 
   fetchMeetups(searchRadius) {
+
     function onFetchMeetupsComplete(data, textStatus, jqXHR) {
       this.setState({
         localMeetups: data.body
