@@ -12,41 +12,24 @@ var googleTrends = require('google-trends-api');
 //TONY TESTING FOR MEETUP API CONNECTION
 
 exports.getMeetups = function(req, res) {
-  // res.send('cats');
-  // worked:
-  // var queryString = 'https://api.meetup.com/find/groups?format=json&photo-host=public&zip=94103&page=20&sig_id=159286762&radius=1&category=13&sig=1c6ac121a3988a353b1ebde57690c514209b0604';
 
-  // lat: 37.795,
-  // long: -122.40
+  console.log('req.query.searchRadius', req.query.searchRadius);
 
-  // console.log('req.session', req.session.user.latitude);
-
-  // var queryString = 'https://api.meetup.com/find/groups?format=json&photo-host=public&lat=37.795&lon=-122.40&page=20&sig_id=159286762&radius=1&category=13&key=415a2c7626b621d2d652a192c17154';
   var queryString = 'https://api.meetup.com/find/groups';
   unirest.get(queryString)
-    // .query('format=json')
-    // .query('photohost=public')
-    // .query('lat=37.795')
-    // .query('lon=-122.40')
-    // .query('page=20')
-    // .query('sig_id=159286762')
-    // .query('radius=1')
-    // .query('category=13')
-    // .query('key=415a2c76
-
     .query({
-      format: 'json',
-      photohost: 'public',
+      // format: 'json',
+      // photohost: 'public',
       lat: req.session.user.latitude,
       lon: req.session.user.longitude,
-      page: 20,
-      'sig_id': 159286762,
-      radius: 1,
+      page: 500,
+      // 'sig_id': 159286762,
+      radius: req.query.searchRadius,
       category: 13,
+      sign: true,
       key: '415a2c7626b621d2d652a192c17154'
     })
     .end(function(response) {
-      // console.log(response);
       res.send(response);
     });
 };
