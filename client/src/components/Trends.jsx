@@ -65,27 +65,28 @@ class Trends extends React.Component {
     ///////////////////////////////////////////////////////////
 
   render() {
-    console.log('the state', this.state.searchGoogle);
 
     return(
-      <div>
-      hello
-      <div className = "cardDeck">
+
+      <div className = "card-columns" style={{"margin": 'auto'}}>
         {this.state.searchGoogle.map((x) => {
           return(
-
+            <div className = "row">
+            <div className="col-md-3">
               <div className="card" style={{width: '318px'}}>
-                <img className="card-img-top" src={x['ht:picture'][0]} alt="Card image cap"/>
+                <img className="card-img-top" src={x['ht:picture'][0]} alt="Card image cap" style = {{height: "250px"}}/>
                 <div className="card-block">
-                  <h4 className="card-title">Card title</h4>
-                  <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                  <h4 className="card-title"> {x['ht:news_item'][0]['ht:news_item_title'][0]}</h4>
+                  <p className="card-text">{x['ht:news_item'][0]['ht:news_item_snippet'][0]}</p>
                   <a href="#" className="btn btn-primary">Go somewhere</a>
                 </div>
               </div>
+            </div>
+            </div>
           )
         })}
       </div>
-      </div>
+
     )
   }
 };
